@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trilha de Capacitações — Estat Júnior</title>
+
+<!-- Favicon correto com tamanho explícito -->
+<link rel="icon" type="image/png" sizes="32x32" href="marca.png">
+<link rel="shortcut icon" href="marca.png">
+<link rel="apple-touch-icon" href="marca.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Raleway:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="design.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    <!-- Logo real da Estat Júnior -->
+    <img src="marca.png" alt="Estat Júnior" height="44" style="display:block;">
+    <div class="logo-text">
+      <span class="logo-name">Estat Júnior</span>
+      <span class="logo-sub">Trilha de Capacitações</span>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <h1>Copiar cursos<br>para <span>membros</span></h1>
+    <p>Ele se conecta ao clickup e ao duplica o curso e ja o coloca dentro do membro(sem segunda inteçoes!)</p>
+  </div>
+
+  <!-- Tigrão real -->
+  <div class="hero-tiger">
+    <img src="estatigrao.png" alt="Tigrão Estat Júnior" width="160" style="display:block; filter: drop-shadow(0 8px 32px rgba(75,174,212,0.18));">
+  </div>
+</section>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- STEP 1 -->
+  <div class="card">
+    <div class="step-header">
+      <div class="step-num" id="num-1">1</div>
+      <div class="step-title">Conectar ao ClickUp</div>
+    </div>
+    <div class="input-row">
+      <input type="password" id="apiKey" placeholder="pk_xxxxxxxxxxxxxxxxxxxx" autocomplete="off"/>
+      <button class="btn btn-blue" onclick="loadWorkspace()">Conectar →</button>
+    </div>
+    <p class="tip">
+      Avatar (canto inferior esquerdo) → <strong style="color:var(--text)">Configurações → Aplicativos</strong> → copie o Token de API pessoal.<br>
+      <a href="https://app.clickup.com/settings/apps" target="_blank">Abrir configurações ↗</a>
+    </p>
+    <div class="msg" id="msg-connect"></div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="card section-hidden" id="section-lists">
+    <div class="step-header">
+      <div class="step-num" id="num-2">2</div>
+      <div class="step-title">Confirmar listas</div>
+    </div>
+    <div class="field-label">Lista de Cursos</div>
+    <select id="sel-courses" onchange="loadCourses()">
+      <option value="">— selecione —</option>
+    </select>
+    <div class="field-label">Lista de Membros (status = nome do membro)</div>
+    <select id="sel-members" onchange="loadMemberStatuses()">
+      <option value="">— selecione —</option>
+    </select>
+    <div class="msg" id="msg-lists"></div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="card section-hidden" id="section-courses">
+    <div class="step-header">
+      <div class="step-num" id="num-3">3</div>
+      <div class="step-title">Selecionar cursos</div>
+      <span class="step-count" id="count-courses"></span>
+    </div>
+    <div id="courses-list"><span class="empty">Carregando...</span></div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="card section-hidden" id="section-members">
+    <div class="step-header">
+      <div class="step-num" id="num-4">4</div>
+      <div class="step-title">Selecionar membros</div>
+      <span class="step-count" id="count-members"></span>
+    </div>
+    <div id="members-list"><span class="empty">Carregando...</span></div>
+  </div>
+
+  <!-- STEP 5 -->
+  <div class="card section-hidden" id="section-action">
+    <div class="step-header">
+      <div class="step-num" id="num-5">5</div>
+      <div class="step-title">Duplicar cursos</div>
+    </div>
+    <div class="summary-box" id="summary"></div>
+    <button class="btn btn-blue btn-full" id="btn-copy" onclick="copyCourses()">
+      ✓ &nbsp;Duplicar cursos nos membros selecionados
+    </button>
+    <div class="progress-wrap" id="progress-wrap">
+      <div class="progress-label" id="progress-label">Processando...</div>
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    </div>
+    <div class="msg" id="msg-result"></div>
+    <div class="result-list" id="result-list"></div>
+  </div>
+
+</main>
+
+<footer>
+  Desenvolvido internamente pela <span>Estat Júnior</span> · UNICAMP
+</footer>
+
+<script src="back.js"></script>
+</body>
+</html>
